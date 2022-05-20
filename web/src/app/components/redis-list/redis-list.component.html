@@ -1,1 +1,59 @@
-<p>redis-list works!</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <symbol id="plus-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    </symbol>
+    <symbol id="search" viewBox="0 0 16 16">
+      <path
+        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+    </symbol>
+  </svg>
+  <div class="container mt-2">
+    <div class="row justify-content-center">
+      <!-- <div class="col-md-4">
+        <h5 class="card-title">Buscar Reporte</h5>
+        <form autocomplete="on" [formGroup]="newForm" (ngSubmit)="search()">
+          <div class="row">
+            <!-- Nombre --
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#search" />
+                  </svg>
+                </span>
+              </div>
+              <input formControlName="Search" id="Search" type="text" name="Search" placeholder="Reporte"
+                class="form-control bg-white border-left-0 border-md" />
+            </div>
+            <div class="form-group col-lg-12 mx-auto mb-0">
+              <button type="submit" class="btn btn-primary btn-block py-2">
+                Buscar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div> -->
+      <div class="col-md-8">
+        <table class="table">
+          <thead class="table-secondary">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Password</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reports">
+              <th scope="row">{{ report.name }}</th>
+              <td>{{ report.email }}</td>
+              <td>{{ report.password }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+  

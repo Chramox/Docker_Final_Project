@@ -70,14 +70,16 @@ async function getAll(_req, res) {
 
         // utilizar lrange para leer los datos de la lista
         let err, result = await client.lRange(list, init, last);
-
+        console.log(err,result);
+        client.quit();
         // si existió un error (que la lista no exista o que no sea de tipo lista
         // mostrar el error y retornar 500 Internal Server Error
         if (err) {
             console.error(err);
             res.status(500).json({ message: "Error API" });
         }
-        res.json(result);
+        const data = result.map( item => JSON.parse(item))
+        res.json(data);
     } catch (error) {
         console.log(error)
         res.status(500).json({ message: "Error API" });
