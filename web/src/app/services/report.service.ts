@@ -20,4 +20,12 @@ export class ReportService {
     return this.http.post<string[]>(this.URL + `/api/report/`, body);
   }
 
+  getAllRedis(): Observable<Report[]> {
+    return this.http.get<Report[]>(this.URL + `/api/redis/report/` );
+  }
+
+  newRedis( body: Report ): Observable<string[]> {
+    return this.http.post<string[]>(this.URL + `/api/redis/report/`, body);
+  }
+
 }

@@ -17,6 +17,14 @@ services:
       volumes:
         - datavolume:/var/lib/mysql
         - ./database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
+    
+    redis:
+      image: "bitnami/redis: latest"
+      restart: always
+      ports:
+          - 6379:6379
+      environment: 
+          - ALLOW_EMPTY_PASSWORD=yes
 
 volumes:
   datavolume:

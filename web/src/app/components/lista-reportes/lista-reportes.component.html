@@ -10,11 +10,11 @@
 </svg>
 <div class="container mt-2">
   <div class="row justify-content-center">
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <h5 class="card-title">Buscar Reporte</h5>
       <form autocomplete="on" [formGroup]="newForm" (ngSubmit)="search()">
         <div class="row">
-          <!-- Nombre -->
+          <!-- Nombre --
           <div class="input-group col-lg-12 mb-4">
             <div class="input-group-prepend">
               <span class="input-group-text bg-white px-4 border-md border-right-0">
@@ -33,34 +33,21 @@
           </div>
         </div>
       </form>
-    </div>
+    </div> -->
     <div class="col-md-8">
       <table class="table">
         <thead class="table-secondary">
           <tr>
-            <th scope="col">Carnet</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Proyecto</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Servidor</th>
-            <th scope="col">Detalles</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let report of reports">
-            <th scope="row">{{ report.carnet }}</th>
-            <td>{{ report.nombre }}</td>
-            <td>{{ report.proyecto }}</td>
-            <td>{{ report.fecha }}</td>
-            <td>{{ report.servidor }}</td>
-            <td>
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalView"
-                (click)="selectedReport = report">
-                <svg class="bi" width="1em" height="1em">
-                  <use xlink:href="#plus-circle" />
-                </svg>
-              </button>
-            </td>
+            <th scope="row">{{ report.name }}</th>
+            <td>{{ report.email }}</td>
+            <td>{{ report.password }}</td>
           </tr>
         </tbody>
       </table>
@@ -69,40 +56,3 @@
 </div>
 
 <div>
-
-  <!-- Modal VIEW -->
-  <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Detalle Reporte</h5>
-        </div>
-        <div class="modal-body">
-          <h6 class="card-subtitle mb-2">
-            <b>Carnet</b>: {{ selectedReport.carnet }}
-          </h6>
-          <h6 class="card-subtitle mb-2">
-            <b>Nombre</b>: {{ selectedReport.nombre }}
-          </h6>
-          <h6 class="card-subtitle mb-2">
-            <b>Proyecto/Clase</b>: {{ selectedReport.proyecto }}
-          </h6>
-          <h6 class="card-subtitle mb-2">
-            <b>Fecha</b>: {{ selectedReport.fecha }}
-          </h6>
-          <hr>
-          <h6 class="card-subtitle mb-2">
-            <b>Cuerpo del Reporte</b>: <br> {{ selectedReport.cuerpo }}
-          </h6>
-        </div>
-        <div class="modal-footer">
-          <h6 class="card-subtitle mb-2">
-            <b>Solicitud atendida por el servidor "{{ selectedReport.servidor }}" </b>
-          </h6>
-          <button id="btn-close-delete" type="button" class="btn btn-primary" data-dismiss="modal">
-            Salir
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>

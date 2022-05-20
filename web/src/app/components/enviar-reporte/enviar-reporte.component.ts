@@ -14,9 +14,8 @@ export class EnviarReporteComponent implements OnInit {
   constructor(private fbuilder: FormBuilder, private reportService: ReportService) {
     this.reportForm = this.fbuilder.group({
       Name: [''],
-      Carnet: [''],
-      Project: [''],
-      Body: [''],
+      Email: [''],
+      Password: ['']
     });
   }
 
@@ -24,21 +23,35 @@ export class EnviarReporteComponent implements OnInit {
   }
   sendReport() {
     const newReport: Report = {
-      carnet: this.reportForm.get("Carnet")?.value,
-      nombre: this.reportForm.get("Name")?.value,
-      proyecto: this.reportForm.get("Project")?.value,
-      cuerpo: this.reportForm.get("Body")?.value,
+      name: this.reportForm.get("Name")?.value,
+      email: this.reportForm.get("Email")?.value,
+      password: this.reportForm.get("Password")?.value
     };
     this.reportService.new(newReport).subscribe(
       (res) => {
         alert("Reporte enviado");
-        this.reportForm.get("Carnet")?.setValue('');
         this.reportForm.get("Name")?.setValue('');
-        this.reportForm.get("Project")?.setValue('');
-        this.reportForm.get("Body")?.setValue('');
+        this.reportForm.get("Email")?.setValue('');
+        this.reportForm.get("Password")?.setValue('');
       },
       (err) => alert("No se pudo enviar el reporte")
     )
   }
 
+  sendReportRedis() {
+    const newReport: Report = {
+      name: this.reportForm.get("Name")?.value,
+      email: this.reportForm.get("Email")?.value,
+      password: this.reportForm.get("Password")?.value
+    };
+    this.reportService.newRedis(newReport).subscribe(
+      (res) => {
+        alert("Reporte enviado");
+        this.reportForm.get("Name")?.setValue('');
+        this.reportForm.get("Email")?.setValue('');
+        this.reportForm.get("Password")?.setValue('');
+      },
+      (err) => alert("No se pudo enviar el reporte")
+    )
+  }
 }

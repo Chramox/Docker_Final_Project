@@ -6,6 +6,7 @@ const config = require("./config");
 
 //Routes
 const reportsRoute =  require("./routes/report.routes")
+const reportsRedisRoute =  require("./routes/report-redis.routes")
 //API Configuration
 const app = express();
 const corsOptions = { origin: "*", optionsSuccessStatus: 200 };
@@ -17,6 +18,7 @@ app.use(express.urlencoded({
 }));
 
 app.use("/api/report", reportsRoute.routes);
+app.use("/api/redis/report", reportsRedisRoute.routes);
 
 app.get("/api", (_req, res) => res.status(200).send({ message: "API NodeJs!"}));
 app.listen(config.port, () =>

@@ -5,34 +5,35 @@ const moment = require("moment");
 async function newReport(req, res) {
     try {
         let { id, name, password } = req.body;
-        const date = new Date();
-        const query = `INSERT INTO Reporte (id, name, password) VALUES (?,?,?);`
-        const a = conndb.query(query,[id, name, password],function(err, _result){
+        const query = `INSERT INTO Report (id, name, password) VALUES (?,?,?);`
+        conndb.query(query,[id, name, password],function(err, _result){
             if (err) {
-                res.status(500).json("Can´t register the information");
+                console.error(err)
+                res.status(500).json({message: "Can´t register the information"});
             } else {
-                res.json("Information registered");
+                res.json({message: "Information registered"});
             }
         });
     } catch (error) {
-        res.status(500).json("Error API", error);
+        console.error(error)
+        res.status(500).json({message: "Error API"});
     }
 }
 
 async function getAll(_req,res) {
     try {
-        const query = `SELECT * FROM Reporte;`;
+        const query = `SELECT * FROM Report;`;
         conndb.query(query, function(err,result){
             if (err) {
                 console.log(err);
-                res.status(500).json("Error consulting the information");
+                res.status(500).json({message: "Error consulting the information"});
             } else {
                 res.send(result);
             }
         });
     } catch (error) {
         console.log(error)
-        res.status(500).json("Error API");
+        res.status(500).json({message: "Error API"});
     }
 }
 

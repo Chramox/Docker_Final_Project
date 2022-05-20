@@ -38,6 +38,14 @@ services:
       project_network:
         ipv4_address: 10.10.12.2
 
+  redis:
+    image: "bitnami/redis: latest"
+    restart: always
+    ports:
+        - 6379:6379
+    environment: 
+        - ALLOW_EMPTY_PASSWORD=yes
+
 volumes:
   datavolume:
 

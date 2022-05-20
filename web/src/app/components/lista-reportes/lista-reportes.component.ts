@@ -14,12 +14,9 @@ export class ListaReportesComponent implements OnInit {
   reports: Report[] = [];
   carnet: string = "";
   selectedReport: Report = {
-    carnet: 0,
-    nombre: "",
-    proyecto: "",
-    servidor: "",
-    fecha: "",
-    cuerpo: "",
+    name: "",
+    email: "",
+    password: "",
   };
 
   constructor(private fbuilder: FormBuilder, private reportService: ReportService) {
@@ -31,17 +28,17 @@ export class ListaReportesComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  search() {
-    this.reportService.getAll().subscribe(
-      (response) => {
-        const number_carnet = Number(this.newForm.get('Search')?.value);
-        if (number_carnet) {
-          this.reports = response.filter(item => item.carnet == number_carnet );
-        } else {
-          this.reports = response;
-        }
-        console.log(this.reports)
-      }
-    )
-  }
+  // search() {
+  //   this.reportService.getAll().subscribe(
+  //     (response) => {
+  //       const number_carnet = Number(this.newForm.get('Search')?.value);
+  //       if (number_carnet) {
+  //         this.reports = response.filter(item => item.carnet == number_carnet );
+  //       } else {
+  //         this.reports = response;
+  //       }
+  //       console.log(this.reports)
+  //     }
+  //   )
+  // }
 }
