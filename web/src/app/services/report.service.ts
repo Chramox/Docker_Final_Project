@@ -13,11 +13,11 @@ export class ReportService {
 
 
   getAll(): Observable<Report[]> {
-    return this.http.get<Report[]>(`/api/report/` );
+    return this.http.get<Report[]>(this.URL + `/api/report/` );
   }
 
   new( body: Report ): Observable<string[]> {
-    return this.http.post<string[]>(`/api/report/`, body);
+    return this.http.post<string[]>(this.URL + `/api/report/`, body);
   }
 
 }

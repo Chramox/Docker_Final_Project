@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL: 'http://load_balancer:8080/'
+  URL: 'http://localhost:5000'
 };
 
 /*

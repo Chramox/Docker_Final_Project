@@ -8,7 +8,7 @@ const config = require("./config");
 const reportsRoute =  require("./routes/report.routes")
 //API Configuration
 const app = express();
-const corsOptions = { origin: true, optionsSuccessStatus: 200 };
+const corsOptions = { origin: "*", optionsSuccessStatus: 200 };
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(express.urlencoded({
 app.use("/api/report", reportsRoute.routes);
 
 app.get("/api", (_req, res) => res.status(200).send({ message: "API NodeJs!"}));
-app.listen(config.port, "0.0.0.0", () =>
+app.listen(config.port, () =>
   console.log("App is listening on url http://localhost:" + config.port)
 );
 

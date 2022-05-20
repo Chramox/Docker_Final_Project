@@ -6,69 +6,26 @@ x-common-variables: &common-variables
     MYSQL_ROOT_PASSWORD: "pass"
     MYSQL_USER: "root"
     MYSQL_PASS: "pass"
-    DB_NAME: "Redes2"
+    DB_NAME: "ProyectoDocker"
 
 services:
   frontend:
     build: ./app
     ports:
-      - "8080:80"
+      - "80:80"
     networks:
-      frontend_network:
-        ipv4_address: 192.168.52.2
-      service_network:
-        ipv4_address: 172.35.72.6
+      - project_network
     depends_on:
       - load_balancer
 
-  load_balancer:
-    build: ./nginx
-    networks:
-      service_network:
-        ipv4_address: 172.35.72.5
-    depends_on:
-      - server1
-      - server2
-      - server3
-
-  server1:
+  api:
     build: ./api
     environment:
       <<: *common-variables
-      ID_SERVER: "201801345"
     networks:
-      service_network:
-        ipv4_address: 172.35.72.2
-      db_network:
-        ipv4_address: 10.10.12.3
+      - project_network
     depends_on:
       - database
-
-  server2:
-    build: ./api
-    environment:
-      <<: *common-variables
-      ID_SERVER: "201800714"
-    networks:
-      service_network:
-        ipv4_address: 172.35.72.3
-      db_network:
-        ipv4_address: 10.10.12.4
-    depends_on:
-    - database
-
-  server3:
-    build: ./api
-    environment:
-      <<: *common-variables
-      ID_SERVER: "201801195"
-    networks:
-      service_network:
-        ipv4_address: 172.35.72.4
-      db_network:
-        ipv4_address: 10.10.12.5
-    depends_on:
-    - database
 
   database:
     image: mysql:latest
@@ -78,24 +35,14 @@ services:
       - datavolume:/var/lib/mysql
       - ./database/database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
     networks:
-      db_network:
+      project_network:
         ipv4_address: 10.10.12.2
 
 volumes:
   datavolume:
 
 networks:
-  frontend_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: "192.168.52.0/24"
-  service_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: "172.35.72.0/24"
-  db_network:
+  project_network:
     driver: bridge
     ipam:
       config:

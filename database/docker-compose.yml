@@ -1,0 +1,20 @@
+version: "3.9"
+
+x-common-variables: &common-variables
+    DB_HOST: "10.10.12.2"
+    DB_PORT: "3306"
+    MYSQL_ROOT_PASSWORD: "pass"
+    DB_NAME: "ProyectoDocker"
+
+
+services:
+    database:
+      image: mysql:latest
+      restart: always
+      environment: *common-variables
+      volumes:
+        - datavolume:/var/lib/mysql
+        - ./database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
+
+volumes:
+  datavolume:
