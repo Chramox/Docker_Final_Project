@@ -9,7 +9,7 @@ x-common-variables: &common-variables
 
 services:
     database:
-      image: mysql:latest
+      image: mysql:8.0.29-oracle
       restart: always
       environment: *common-variables
       ports:
@@ -19,7 +19,7 @@ services:
         - ./database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
     
     redis:
-      image: "bitnami/redis: latest"
+      image: "bitnami/redis:6.0.16"
       restart: always
       ports:
           - 6379:6379
