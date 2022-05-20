@@ -4,28 +4,26 @@ x-common-variables: &common-variables
     DB_HOST: "10.10.12.2"
     DB_PORT: "3306"
     MYSQL_ROOT_PASSWORD: "pass"
-    MYSQL_USER: "root"
-    MYSQL_PASS: "pass"
     DB_NAME: "ProyectoDocker"
 
 services:
   frontend:
-    build: ./app
+    build: ./web
     ports:
       - "80:80"
     networks:
       - project_network
-    depends_on:
-      - load_balancer
 
   api:
     build: ./api
     environment:
       <<: *common-variables
+      - REDIS_HOST=10.10.12.3
     networks:
       - project_network
     depends_on:
       - database
+      - redis
 
   database:
     image: mysql:8.0.29-oracle
@@ -39,12 +37,15 @@ services:
         ipv4_address: 10.10.12.2
 
   redis:
-    image: "bitnami/redis:6.0.16"
+    image: "bitnami/redis:6.2.7"
     restart: always
     ports:
-        - 6379:6379
+        - "6379:6379"
     environment: 
         - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      project_network:
+        ipv4_address: 10.10.12.3
 
 volumes:
   datavolume:

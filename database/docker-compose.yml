@@ -6,7 +6,6 @@ x-common-variables: &common-variables
     MYSQL_ROOT_PASSWORD: "pass"
     DB_NAME: "ProyectoDocker"
 
-
 services:
     database:
       image: mysql:8.0.29-oracle
@@ -19,10 +18,10 @@ services:
         - ./database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
     
     redis:
-      image: "bitnami/redis:6.0.16"
+      image: "bitnami/redis:6.2.7"
       restart: always
       ports:
-          - 6379:6379
+          - "6379:6379"
       environment: 
           - ALLOW_EMPTY_PASSWORD=yes
 

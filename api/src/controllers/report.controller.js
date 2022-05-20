@@ -1,6 +1,5 @@
 "use strict";
 const {conndb} = require("../config");
-const moment = require("moment");
 
 async function newReport(req, res) {
     try {

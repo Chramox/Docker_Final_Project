@@ -1,4 +1,6 @@
 const redis = require("redis"); // npm i redis
+const aws_keys = require("./creds");
+
 
 async function newReport(req, res) {
     try {
@@ -10,7 +12,7 @@ async function newReport(req, res) {
         const client = redis.createClient({
             socket: {
                 port: 6379,
-                host: '35.222.160.79',
+                host: aws_keys.REDIS_HOST,
             }
         });
         client.connect();
@@ -53,7 +55,7 @@ async function getAll(_req, res) {
         const client = redis.createClient({
             socket: {
                 port: 6379,
-                host: '35.222.160.79',
+                host: aws_keys.REDIS_HOST,
             }
         });
         client.connect();

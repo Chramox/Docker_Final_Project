@@ -1,12 +1,13 @@
-const { DB_PORT, DB_HOST, MYSQL_USER, MYSQL_PASS, DB_NAME } = process.env;
+const { DB_PORT, DB_HOST, MYSQL_ROOT_PASSWORD, DB_NAME, REDIS_HOST } = process.env;
 
 let aws_keys = {
     RDS: {
-        host: "35.222.160.79",
-        port: "3306",
+        host: DB_HOST,
+        port: DB_PORT,
         user: "root",
-        password: "pass",
-        database: "ProyectoDocker"
-    }
+        password: MYSQL_ROOT_PASSWORD,
+        database: DB_NAME
+    },
+    REDIS_HOST: REDIS_HOST
 };
 module.exports = aws_keys;
