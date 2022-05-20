@@ -1,20 +1,10 @@
 <div class="container" style="padding-top: 2rem;"> 
 
     <div class="card border-primary mb-3" style="max-width: 40rem;">
-        <div class="card-header">Ingreso de Reportes</div>
+        <div class="card-header">Send Information</div>
         <div class="card-body">
             <form autocomplete="on" [formGroup]="reportForm" (ngSubmit)="sendReport()">
                 <div class="row">
-                    <!-- Carnet -->
-                    <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fas fa-address-card text-muted"></i>
-                            </span>
-                        </div>
-                        <input formControlName="Carnet" id="Carnet" type="text" name="Carnet" placeholder="Carnet"
-                            class="form-control bg-white border-left-0 border-md">
-                    </div>
                      <!-- Nombre -->
                      <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
@@ -22,31 +12,32 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input formControlName="Name" id="Name" type="text" name="Name" placeholder="Nombre"
+                        <input formControlName="Name" id="Name" type="text" name="Name" placeholder="Name"
                             class="form-control bg-white border-left-0 border-md">
                     </div>
-                     <!-- Project -->
+                     <!-- Email -->
                      <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fas fa-folder text-muted"></i>
+                                <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input formControlName="Project" id="Project" type="text" name="Curso/Proyecto" placeholder="Curso/Proyecto"
+                        <input formControlName="Email" id="Email" type="text" name="Email" placeholder="Email"
                             class="form-control bg-white border-left-0 border-md">
                     </div>
-                     <!-- Body -->
-                     <div class="input-group col-lg-12 mb-4">
+                    <!-- Password -->
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fas fa-comment-alt text-muted"></i>
+                                <i class="fa fa-unlock-alt text-muted"></i>
                             </span>
                         </div>
-                        <textarea formControlName="Body" id="Body" type="text" name="Body" placeholder="Cuerpo del Reporte"
-                            class="form-control bg-white border-left-0 border-md" rows="5"></textarea>
+                        <input formControlName="Password" id="Password" type="text" Password="Password" placeholder="Password"
+                            class="form-control bg-white border-left-0 border-md">
                     </div>
                     <div class="btn-group col-lg-12" role="group" aria-label="Basic example">
-                        <button type="submit" class="btn btn-success">Enviar</button>
+                        <button type="submit" class="btn btn-success">Send to SQL</button>
+                        <button type="submit" class="btn btn-info">Send to Cache</button>
                     </div>
                 </div>
             </form>
