@@ -7,13 +7,15 @@ import { ListaReportesComponent } from './components/lista-reportes/lista-report
 import { EnviarReporteComponent } from './components/enviar-reporte/enviar-reporte.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RedisListComponent } from './components/redis-list/redis-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaReportesComponent,
     EnviarReporteComponent,
-    NavbarComponent
+    NavbarComponent,
+    RedisListComponent
   ],
   imports: [
     BrowserModule,

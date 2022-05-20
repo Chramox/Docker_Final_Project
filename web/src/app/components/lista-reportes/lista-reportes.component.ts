@@ -26,7 +26,7 @@ export class ListaReportesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.reportService.getAll().subscribe(response=>this.reports = response)
   }
   // search() {
   //   this.reportService.getAll().subscribe(
