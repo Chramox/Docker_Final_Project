@@ -12,6 +12,8 @@ services:
       image: mysql:latest
       restart: always
       environment: *common-variables
+      ports:
+      - "3306:3306"
       volumes:
         - datavolume:/var/lib/mysql
         - ./database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
