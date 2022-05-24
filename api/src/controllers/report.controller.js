@@ -3,9 +3,9 @@ const {conndb} = require("../config");
 
 async function newReport(req, res) {
     try {
-        let { id, name, password } = req.body;
-        const query = `INSERT INTO Report (id, name, password) VALUES (?,?,?);`
-        conndb.query(query,[id, name, password],function(err, _result){
+        let { name, email, password } = req.body;
+        const query = `INSERT INTO Report (name, email, password) VALUES (?,?,?);`
+        conndb.query(query,[email, name, password],function(err, _result){
             if (err) {
                 console.error(err)
                 res.status(500).json({message: "Can´t register the information"});

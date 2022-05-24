@@ -1,13 +1,9 @@
 version: "3.9"
 
-x-common-variables: &common-variables
-    DB_HOST: "10.10.12.2"
-    DB_PORT: "3306"
-    MYSQL_ROOT_PASSWORD: "pass"
-    DB_NAME: "ProyectoDocker"
-
 services:
   frontend:
+    image: chramox/docker-project-web
+    restart: always
     build: ./web
     ports:
       - "80:80"
@@ -15,26 +11,45 @@ services:
       - project_network
 
   api:
+    image: chramox/docker-project-api
     build: ./api
+    restart: always
     environment:
-      <<: *common-variables
-      - REDIS_HOST=10.10.12.3
+      DB_PORT: 3306
+      REDIS_HOST: 10.10.12.3
+      DB_NAME: /run/secrets/db_name
+      DB_HOST: /run/secrets/db_host
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_password
+      DB_USER: /run/secrets/mysql_user
     networks:
       - project_network
     depends_on:
       - database
       - redis
+    secrets:
+      - db_name
+      - db_host
+      - db_password
+      - mysql_user
 
   database:
     image: mysql:8.0.29-oracle
     restart: always
-    environment: *common-variables
+    environment:
+      DB_PORT: 3306
+      DB_NAME: /run/secrets/db_name
+      DB_HOST: /run/secrets/db_host
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_password
     volumes:
       - datavolume:/var/lib/mysql
       - ./database/database-script.sql:/docker-entrypoint-initdb.d/database-script.sql
     networks:
       project_network:
         ipv4_address: 10.10.12.2
+    secrets:
+      - db_name
+      - db_host
+      - db_password
 
   redis:
     image: "bitnami/redis:6.2.7"
@@ -49,6 +64,16 @@ services:
 
 volumes:
   datavolume:
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_name:
+    file: ./secrets/db_name.txt
+  db_host:
+    file: ./secrets/db_host.txt
+  mysql_user:
+    file: ./secrets/mysql_user.txt
 
 networks:
   project_network:

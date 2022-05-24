@@ -1,12 +1,13 @@
-const { DB_PORT, DB_HOST, MYSQL_ROOT_PASSWORD, DB_NAME, REDIS_HOST } = process.env;
+const { DB_PORT, REDIS_HOST } = process.env;
+const fs = require('fs');
 
 let aws_keys = {
     RDS: {
-        host: DB_HOST,
+        host: fs.readFileSync(`/run/secrets/db_host`, 'utf8') || "localhost",
         port: DB_PORT,
-        user: "root",
-        password: MYSQL_ROOT_PASSWORD,
-        database: DB_NAME
+        user: fs.readFileSync(`/run/secrets/mysql_user`, 'utf8') || "root",
+        password: fs.readFileSync(`/run/secrets/db_password`, 'utf8') || "pass",
+        database: fs.readFileSync(`/run/secrets/db_name`, 'utf8') || "ProyectoDocker"
     },
     REDIS_HOST: REDIS_HOST
 };

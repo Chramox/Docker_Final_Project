@@ -1,5 +1,5 @@
 const redis = require("redis"); // npm i redis
-const aws_keys = require("./creds");
+const aws_keys = require("../creds");
 
 
 async function newReport(req, res) {
